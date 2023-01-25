@@ -1,0 +1,38 @@
+<!-- navbar -->
+<app-header></app-header>
+
+<!-- login page -->
+<div class="row">
+    <div class="col-7 ">
+        <!-- image -->
+        <img class="mt-4 ms-4 img-fluid" height="500px" src="https://cdni.iconscout.com/illustration/premium/thumb/mobile-secure-banking-4152977-3444287.png" alt="login image">
+    </div>
+    <div class="col-5 mt-5">
+        <form (ngSubmit)="login()" [formGroup]="loginForm" class="border p-5 mt-5 me-5">
+            <div>
+                <input name="acno" formControlName="acno" type="text" class="form-control" placeholder="Account Number">
+            </div>
+            <!-- invalid account number -->
+            <div *ngIf="this.loginForm.get('acno')?.errors&&this.loginForm.get('acno')?.touched" class="text-danger mb-2">Invalid Account Number</div>
+
+            <div class="mt-3">
+                <input name="pswd" formControlName="pswd" type="password" class="form-control" placeholder="Password">
+            </div>
+            <!-- invalid password -->
+            <div *ngIf="this.loginForm.get('pswd')?.errors&&this.loginForm.get('pswd')?.touched" class="text-danger mb-2">Invalid Password</div>
+            
+            <!-- errorMsg -->
+            <div class="text-danger">{{errorMsg}}</div>
+
+            <div class="mt-4">
+                <button type="submit" class="btn btn-primary">Login
+                    <span *ngIf="successMsg" class="spinner-border text-light" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </span>
+                </button>
+                &nbsp;
+                <span>New user? Click here to <a routerLink="/register">register</a></span>
+            </div>
+        </form>
+    </div>
+</div>
